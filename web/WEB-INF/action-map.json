@@ -1,0 +1,60 @@
+{
+    "user": {
+        "controllerClassName": "com.app.ctrl.UserController",
+        "actions": {
+            "edit": {
+                "POST": {
+                    "methodName": "edit",
+                    "modelClassName": "com.app.bean.db.UserInfo",
+                    "allowedRoles": [
+                        "*"
+                    ]
+                },
+                "GET": {
+                    "methodName": "getIndex",
+                    "modelClassName": "java.lang.String",
+                    "allowedRoles": [
+                        "*"
+                    ]
+                }
+            }
+        }
+    },
+    "home": {
+        "controllerClassName": "com.app.ctrl.HomeController",
+        "actions": {
+            "index": {
+                "POST": {
+                    "methodName": "postIndex",
+                    "modelClassName": "java.lang.String[]",
+                    "allowedRoles": [
+                        "*"
+                    ]
+                },
+                "GET": {
+                    "methodName": "index",
+                    "modelClassName": "java.lang.String",
+                    "allowedRoles": [
+                        "*"
+                    ]
+                }
+            },
+            "edit": {
+                "POST": {
+                    "methodName": "edit",
+                    "modelClassName": "com.app.bean.db.UserInfo",
+                    "allowedRoles": [
+                        "*"
+                    ]
+                },
+                "GET": {
+                    "methodName": "getIndex",
+                    "modelClassName": "java.lang.String",
+                    "allowedRoles": [
+                        "*"
+                    ]
+                }
+            }
+        }
+    }
+}

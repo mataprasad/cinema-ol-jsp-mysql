@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+    <display-name>Cinema OL</display-name>
+    <context-param>
+        <description>Db Type</description>
+        <param-name>db-type</param-name>
+        <param-value>MYSQL</param-value>
+    </context-param>
+    <context-param>
+        <description>Db Driver</description>
+        <param-name>db-driver</param-name>
+        <param-value>org.mariadb.jdbc.Driver</param-value>
+    </context-param>
+    <context-param>
+        <description>Db Host</description>
+        <param-name>db-host</param-name>
+        <param-value>localhost</param-value>
+    </context-param>
+    <context-param>
+        <description>Db Port</description>
+        <param-name>db-port</param-name>
+        <param-value>3306</param-value>
+    </context-param>
+    <context-param>
+        <description>Db UserId</description>
+        <param-name>db-user-id</param-name>
+        <param-value>root</param-value>
+    </context-param>
+    <context-param>
+        <description>Db Password</description>
+        <param-name>db-password</param-name>
+        <param-value></param-value>
+    </context-param>
+    <context-param>
+        <description>Db DatabaseName</description>
+        <param-name>db-name</param-name>
+        <param-value>DbCinemaOL</param-value>
+    </context-param>
+    <context-param>
+        <description>Location to store uploaded file</description>
+        <param-name>file-upload</param-name>
+        <param-value>c:\apache-tomcat-5.5.29\webapps\data\</param-value>
+    </context-param>
+    <servlet>
+        <servlet-name>SimpleCaptcha</servlet-name>
+        <servlet-class>nl.captcha.servlet.SimpleCaptchaServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SimpleCaptcha</servlet-name>
+        <url-pattern>/public/captcha.jpg</url-pattern>
+    </servlet-mapping>
+    <!--<servlet>
+        <servlet-name>ErrorHandler</servlet-name>
+        <servlet-class>com.app.framework.web.ErrorHandler</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ErrorHandler</servlet-name>
+        <url-pattern>/ErrorHandler</url-pattern>
+    </servlet-mapping>
+    <error-page>
+        <error-code>404</error-code>
+        <location>/ErrorHandler</location>
+    </error-page>
+    <error-page>
+        <exception-type>java.lang.Throwable</exception-type>
+        <location>/ErrorHandler</location>
+    </error-page>
+    -->
+    <filter>
+        <filter-name>f1</filter-name>
+        <filter-class>com.app.framework.web.AuthorizeFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>f1</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <filter>
+        <description>
+            Check for multipart HttpServletRequests and parse the multipart form data so that all
+            regular form fields are available in the parameterMap of the HttpServletRequest and that
+            all form file fields are available as attribute of the HttpServletRequest. The attribute
+            value of a form file field can be an instance of FileItem or FileUploadException.
+        </description>
+        <filter-name>multipartFilter</filter-name>
+        <filter-class>com.app.framework.web.MultipartFilter</filter-class>
+        <init-param>
+            <description>
+                Sets the maximum file size of the uploaded file in bytes. Set to 0 to indicate an
+                unlimited file size. The example value of 1048576 indicates a maximum file size of
+                1MB. This parameter is not required and can be removed safely.
+            </description>
+            <param-name>maxFileSize</param-name>
+            <param-value>1048576</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>multipartFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <filter>
+        <filter-name>f0</filter-name>
+        <filter-class>com.app.framework.web.mvc.ControllerFactory</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>f0</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <welcome-file-list>
+        <welcome-file>/home</welcome-file>
+    </welcome-file-list>
+</web-app>
